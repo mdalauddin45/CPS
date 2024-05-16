@@ -8,15 +8,20 @@ typedef long long int lli;
 const int N=1e5+7;
 int nums[N];
  
-#define cn(n)           int n;cin>>n;
+#define cn(n)           double n;cin>>n;
 #define w(t)            int t;cin>>t;while(t--)
 #define Alauddin        ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0);
 #define REP(i,a,b) for (int i = a; i <= b; i++)
- 
+#define pi             M_PI
 int main()
 {
     Alauddin
-    cn(a); cn(b);
-    cout<<a*b<<" "<<2*(a+b)<<endl;
+    double r;
+    cin >> r;
+
+    double area = pi * r * r;
+    double circumference = 2 * pi * r;
+
+    cout << fixed << setprecision(6) << area << " " << circumference << endl;
     return 0;
 }
