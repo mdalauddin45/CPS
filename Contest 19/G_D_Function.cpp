@@ -13,31 +13,42 @@ int nums[N];
 #define Alauddin        ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0);
 #define REP(i,a,b) for (int i = a; i <= b; i++)
 #define pi              M_PI 
-const int MOD = 1e9 + 7;
+ll solve(ll x, ll y, ll z) {
+    ll result = 1;
+    x %= z;
+    if (x == 0) return 0;
 
-int sumOfDigits(int n) {
-    int sum = 0;
-    while (n > 0) {
-        sum += n % 10;
-        n /= 10;
+    while (y > 0) {
+        if (y & 1) {
+            result = (result * x) % z;
+        }
+        y >>= 1;
+        x = (x * x) % z;
     }
-    return sum;
+    return result;
 }
 int main()
 {
     Alauddin
     w(t){
-        int l, r, k;
-        cin >> l >> r >> k;
+        ll l, u, k;
+        cin >> l >> u >> k;
 
-        long long count = 0;
-        for (int n = max(1, (int)pow(10, l)); n < (int)pow(10, r); ++n) {
-            if (k * sumOfDigits(n) == sumOfDigits(k * n)) {
-                count++;
-            }
+        if (k >= 10) {
+            cout << 0 << endl;
+            continue;
         }
 
-        cout << count % MOD << endl;
+        ll maxDigit = 10 / k;
+        if (10 % k) {
+            maxDigit++;
+        }
+
+        ll highCount = solve(maxDigit, u, 1000000007);
+        ll lowCount = solve(maxDigit, l, 1000000007);
+        ll validCount = (highCount - lowCount + 1000000007) % 1000000007;
+
+        cout << validCount << endl;
     }
     return 0;
 }
